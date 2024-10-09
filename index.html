@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .search-container {
+            margin: 20px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #nameList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        #nameList li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #nameList li.hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for a name..." onkeyup="filterNames()">
+    </div>
+    <ul id="nameList">
+        <li>Rohan</li>
+        <li>Rita</li>
+        <li>John</li>
+        <li>Rob</li>
+        <li>Rakesh</li>
+        <li>Steve</li>
+        <li>Rachel</li>
+    </ul>
+
+    <script>
+        function filterNames() {
+            // Get the value from the search input
+            const searchInput = document.getElementById('search').value.toLowerCase();
+
+            // Get the list of all names
+            const names = document.querySelectorAll('#nameList li');
+
+            // Loop through the list of names
+            names.forEach(function (name) {
+                // Get the text content of each name and convert it to lowercase
+                const nameText = name.textContent.toLowerCase();
+
+                // Check if the name includes the search input value
+                if (nameText.includes(searchInput)) {
+                    name.classList.remove('hidden'); // Show the name if it matches
+                } else {
+                    name.classList.add('hidden'); // Hide the name if it doesn't match
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
